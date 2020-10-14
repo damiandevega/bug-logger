@@ -1,8 +1,8 @@
 {
   "name": "bug-logger",
-  "productName": "Bug Logger",
+  "productName": "BugLogger",
   "version": "1.0.0",
-  "description": "Simple bug logging app",
+  "description": "Simple bug logging app for teams",
   "license": "MIT",
   "engines": {
     "node": ">=9.0.0",
@@ -21,7 +21,9 @@
     "postpackage": "electron-packager ./ --out=./release-builds"
   },
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
