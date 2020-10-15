@@ -2,7 +2,10 @@ import React from 'react';
 import Moment from 'react-moment';
 import { Button, Badge } from 'react-bootstrap';
 
-const LogItem = ({ log: { _id, priority, user, text, created } }) => {
+const LogItem = ({
+  log: { _id, priority, user, text, created },
+  deleteItem,
+}) => {
   const setVariant = () => {
     if (priority === 'high') {
       return 'danger';
@@ -26,7 +29,7 @@ const LogItem = ({ log: { _id, priority, user, text, created } }) => {
         <Moment format="MMMM Do YYYY, h:mm:ss a">{new Date(created)}</Moment>
       </td>
       <td>
-        <Button variant="danger" size="sm">
+        <Button variant="danger" size="sm" onClick={() => deleteItem(_id)}>
           x
         </Button>
       </td>
