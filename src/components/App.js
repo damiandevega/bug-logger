@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Alert } from 'react-bootstrap';
 import LogItem from './LogItem';
 import AddLogItem from './AddLogItem';
 
@@ -27,17 +27,44 @@ const App = () => {
       created: new Date().toString(),
     },
   ]);
+  const [alert, setAlert] = useState({
+    show: false,
+    message: '',
+    variant: 'success',
+  });
 
   const addItem = (item) => {
-    console.log(item);
+    if (item.text === '' || item.user === '' || item.priority === '') {
+      showAlert('Please enter all fields', 'danger');
+      return false;
+    }
+
     item._id = Math.floor(Math.random() * 90000) + 10000;
     item.created = new Date().toString();
     setLogs([...logs, item]);
+    showAlert('Log Added Successfully');
+  };
+
+  const showAlert = (message, variant = 'success', seconds = 3000) => {
+    setAlert({
+      show: true,
+      message,
+      variant,
+    });
+
+    setTimeout(() => {
+      setAlert({
+        show: false,
+        message: '',
+        variant: 'success',
+      });
+    }, seconds);
   };
 
   return (
     <Container>
       <AddLogItem addItem={addItem} />
+      {alert.show && <Alert variant={alert.variant}>{alert.message}</Alert>}
       <Table>
         <thead>
           <tr>
