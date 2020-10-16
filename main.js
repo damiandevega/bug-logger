@@ -1,6 +1,10 @@
 const path = require('path');
 const url = require('url');
 const { app, BrowserWindow } = require('electron');
+const connectDB = require('./config/db');
+
+// Connect to database
+connectDB();
 
 let mainWindow;
 
@@ -30,7 +34,7 @@ function createMainWindow() {
   if (isDev && process.argv.indexOf('--noDevServer') === -1) {
     indexPath = url.format({
       protocol: 'http:',
-      host: 'localhost:8081',
+      host: 'localhost:8080',
       pathname: 'index.html',
       slashes: true,
     });
