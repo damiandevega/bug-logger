@@ -27,6 +27,7 @@ const App = () => {
       created: new Date().toString(),
     },
   ]);
+  
   const [alert, setAlert] = useState({
     show: false,
     message: '',
